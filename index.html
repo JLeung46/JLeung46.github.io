@@ -64,6 +64,7 @@
 
 
 	</style>
+			<script src="http://d3js.org/d3.v3.js"></script>
 	</head>
 
 <body>
@@ -71,7 +72,7 @@
 	<div id="header_wrapper" style="padding-top:10px; padding-left:25px">
 		<header class='inner'>
 			<h1 id='my_title'>
-				Fun with Data
+				One with Data
 			</h1>
 			<h2 id='my_name'>
 				Jack<span style="color:#8ACFF6;">Leung</span>
@@ -81,16 +82,117 @@
 
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-      	<h1>User Ad Click Predicton</h1>
+      	<h1>User Behavior and Ad Click Predicton</h1>
       	<h2>Introduction</h2>
-		<p>Digital Advertising is a multi-billionaire industry that is forecasted to grow globally to $135 billion in 2014 to $240 billion in 2019. As businesses such as e-commerce websites, ad display networks as well as big names such as Google and Facebook rely heavily on ads as a source of income, the ability to predict which ad a user will click is pivotal in ensuring advertising success and highest return on investment. By understanding patterns in user behavior, advertisers can provide more relevant content to maximize ad CTR and improve the user experience. In this project, I explore factors that contribute to a user’s likelihood of clicking on an ad and build a supervised learning algorithm designed to predict which ad a user is likely to click on. </p>
+		<p>Digital Advertising is a multi-billionaire industry that is forecasted to grow globally from $135 billion in 2014 to $240 billion in 2019. As businesses such as e-commerce websites, ad display networks as well as big names such as Google and Facebook rely heavily on ads as a source of income, the ability to predict which ad a user will click is pivotal in ensuring advertising success and highest return on investment. By understanding patterns in user behavior, advertisers can provide more relevant content to maximize ad CTR and improve the user experience. In this project, I explore factors that contribute to a user’s likelihood of clicking on an ad and build a supervised learning algorithm designed to predict which ad a user is likely to click on. </p>
 
 		<h2>Data Description</h2>
-		<p>Avito, Russia’s largest general classified website allows sellers to place ads on their site for a wide variety of items from electrionics to cars to dogs and cats. Avito has over 31 million active listings in 2015. Although Avito provides a great wealth of goods and services for it's 70 million unique monthly visitors, the task of deciding which ads to show for each individual users is difficult. At the time, Avito used only general statistics on ad performance, not taking into account user behavior, making it difficult to provide relevant ads to its users. A result, Avito has provided a dataset that contains 300 million randomly sampled users searches from two months. Each row represents an ad that is shown to the user based on a search. The ads listed on Avito’s website consists of three types: regular free ads posted from users, paid ads which are highlighted and placed at the top of the page for a certain time and contextual ads in which the owner pays per visitor click. The dataset only contains click labels for contextual ads. Additionally. the data is about 11gb in size so a smaller subset of 500,000 records is used for the initial analysis. The goal is to discover insights on user behavior that will allow Avito to provide more relevant content as well as build a learning algorthm that will predict if a user will click on a given ad.  For each record the following characteristics are available:</p>
+		<p>Avito, Russia’s largest general classified website allows sellers to place ads on their site for a wide variety of items from electrionics to cars to dogs and cats. Avito has over 31 million active listings in 2015. Although Avito provides a great wealth of goods and services for it's 70 million unique monthly visitors, the task of deciding which ads to show for each individual users is difficult. At the time, Avito used only general statistics on ad performance, not taking into account user behavior, making it difficult to provide relevant ads to its users. A result, Avito has provided a dataset that contains 300 million randomly sampled users searches from two months. Each row represents an ad that is shown to the user based on a search. The ads listed on Avito’s website consists of three types: regular free ads posted from users, paid ads which are highlighted and placed at the top of the page for a certain time and contextual ads in which the owner pays per visitor click. The dataset only contains click labels for contextual ads. Additionally, the data is about 11gb in size so a smaller subset of 500,000 records is used for the initial analysis. The goal is to discover insights on user behavior that will allow Avito to provide more relevant content as well as build a learning algorthm that will predict if a user will click on a given ad.  For each record the following characteristics are available:</p>
 
 		<h2>Overall Website Activity</h2>
-		<p></p>
+		<p>To start, I was interested in seeing how the website was performing overall. When were clicks occuring most frequently and when was activity the lowest?</p>
 
+		<script type="text/javascript">
+			var margin = {top:70, right: 0, bottom: 100, left:60},
+				width = 960 - margin.left - margin.right,
+				height = 430 - margin.top - margin.bottom,
+				gridSize = Math.floor(width / 24), // Takes width of svg and sets size of each column. Need to floor so doesn't go past width size. Dynamically scales according to width size.
+				legendElementWidth = gridSize*2,
+				buckets = 9,
+				colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],
+				days = ["Mo","Tu","We","Th","Fr","Sa","Su"],
+	          	times = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
+	          	datasets = ['data/heatmap_data.csv'];
+
+	        var svg = d3.select('#chart').append('svg')
+	        	.attr('width', width + margin.left + margin.right)
+	        	.attr('height', height + margin.top + margin.bottom)
+	        	.append('g')
+	        	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	        var dayLabels = svg.selectAll('.dayLabel')
+	        	.data(days)
+	        	.enter().append('text')
+	        		.text(function (d) {return d;})
+	        		.attr('x', 0)
+	        		.attr('y', function (d,i) { return i * gridSize;})
+	        		.style('text-anchor', 'end')
+	        		.attr("transform",  "translate(-6," + gridSize / 1.5 + ")")
+
+	        var timeLabels = svg.selectAll('.timeLabel')
+	        	.data(times)
+	        	.enter().append('text')
+	        		.text(function (d) {return d;})
+	        		.attr('x', function(d,i) {return i * gridSize;})
+	        		.attr('y', 0)
+	        		.style('text-anchor', 'end')
+	        		.attr( "transform", "translate(" + gridSize / 1.5 + ", -6)")      
+
+
+            var heatmapChart = function(csvFile) {
+            	d3.csv(csvFile,
+            		function(d) {
+            			return {
+            				hour: +d.hour,
+            				day: +d.weekday,
+            				click: +d.IsClick
+            			};
+            },// This goes through every line of the data and does stuff to it
+            function(error,data){
+            	var colorScale = d3.scale.quantile()
+            		.domain([0, buckets -1, d3.max(data, function(d) { return d.click;})])
+            		.range(colors);
+
+            	var cards = svg.selectAll(".hour")
+            		.data(data, function(d) {return d.day+':'+d.hour;});
+
+            	cards.append('title');
+
+            	cards.enter().append('rect')
+            		.attr('x', function(d) {return (d.hour) * gridSize;})
+            		.attr('y', function(d) {return (d.day) * gridSize;})
+            		.attr('rx', 4)
+            		.attr('ry', 4)
+            		.attr('class', 'hour bordered')
+            		.attr('width', gridSize)
+            		.attr('height', gridSize)
+            		.style('fill', colors[0]);
+
+            	cards.transition().duration(1000)
+            		.style('fill', function(d) { return colorScale(d.click); });
+				
+				cards.select('title').text(function(d){return d.click})
+
+				cards.exit().remove();
+
+				var legend = svg.selectAll('.legend')
+					.data([0].concat(colorScale.quantiles()), function(d) { return d;});
+				
+				legend.enter().append('g')
+					.attr('class', 'legend');
+
+				legend.append('rect')
+					.attr('x', function(d,i){return legendElementWidth * i})
+					.attr('y', height)
+					.attr('width', legendElementWidth)
+					.attr('height', gridSize / 2)
+					.style('fill', function(d,i) { return colors[i];});
+
+				legend.append('text')
+					.attr('class', 'mono')
+					.text(function(d) { return "≥ " + Math.round(d); })
+					.attr('x', function(d,i){ return legendElementWidth*i;})
+					.attr('y',height + gridSize);
+
+				legend.exit().remove();
+
+			});
+		};
+
+		heatmapChart(datasets[0]);
+
+
+    </script>
 
 		</section>
 	</div>
