@@ -23,7 +23,7 @@ var chart2 = d3.select("#chart2area").append("svg")
   .append("g")
     .attr("transform", "translate(" + width2 / 3.5 + "," + height2 / 2 + ")");
 
-d3.csv("data/search_filter_percent.csv", type, function(error, data) {
+d3.csv("../data/search_filter_percent.csv", type, function(error, data) {
   if (error) throw error;
 
   var g = chart2.selectAll(".arc")

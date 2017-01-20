@@ -32,7 +32,7 @@ var chart3 = d3.select("#chart2area").append("svg")
 
 chart3.call(tip);
 
-d3.csv("../data/ad_click_rates.csv", type, function(error, data) {
+d3.csv("data/ad_click_rates.csv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.User_Type; }));
   y.domain([0, d3.max(data, function(d) { return d.Percent; })]);
 

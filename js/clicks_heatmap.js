@@ -1,5 +1,5 @@
 var margin = {top:70, right: 0, bottom: 100, left:60},
-	width = 960 - margin.left - margin.right,
+	width = 900 - margin.left - margin.right,
 	height = 430 - margin.top - margin.bottom,
 	gridSize = Math.floor(width / 24), // Takes width of svg and sets size of each column. Need to floor so doesn't go past width size. Dynamically scales according to width size.
 	legendElementWidth = gridSize*2,

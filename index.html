@@ -65,8 +65,6 @@
 		  fill: green;
 		}
 
-		.bar { fill: #7bcc66; }
-
 		rect.bordered {
 			stroke: #E6E6E6;
 			stroke-width:2px;
@@ -103,7 +101,7 @@
 		  shape-rendering: crispEdges;
 		}
 
-		.bar2 {
+		.bar {
 		  fill: orange;
 		}
 
@@ -144,12 +142,32 @@
 		  left: 0;
 		}
 
+		/* Map Hover Effect */
+		path:hover {
+		  fill: rgba(8, 81, 156, 0.2);
+		  cursor:pointer;
+		}
+
+		/* Dual barchart style*/
+		.y.axisRight text {
+		    fill: orange;
+		}
+		.y.axisLeft text {
+		    fill: steelblue;
+		}
+
+		.bar1 {
+		  fill: steelblue;
+		}
+		.bar2 {
+		  fill: orange;
+		}
 
 
 	</style>
 			<script src="js/d3.v3.min.js"></script>
 			<script src="js/d3.legend.js"></script>
-			<script src="js/d3.tip"></script>
+			<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
 	</head>
 
@@ -173,7 +191,7 @@
 		<p>Digital Advertising is a multi-billionaire industry that is forecasted to grow globally from $135 billion in 2014 to $240 billion in 2019. As businesses such as e-commerce websites, ad display networks as well as big names such as Google and Facebook rely heavily on ads as a source of income, the ability to predict which ad a user will click is pivotal in ensuring advertising success and highest return on investment. By understanding patterns in user behavior, advertisers can provide more relevant content to maximize ad CTR and improve the user experience. In this project, I explore factors that contribute to a user’s likelihood of clicking on an ad and build a supervised learning algorithm designed to predict which ad a user is likely to click on. </p>
 
 		<h2>Data Description</h2>
-		<p>Avito, Russia’s largest general classified website allows sellers to place ads on their site for a wide variety of items from electrionics to cars to dogs and cats. Avito has over 31 million active listings in 2015. Although Avito provides a great wealth of goods and services for it's 70 million unique monthly visitors, the task of deciding which ads to show for each individual users is difficult. At the time, Avito used only general statistics on ad performance, not taking into account user behavior, making it difficult to provide relevant ads to its users. A result, Avito has provided a dataset that contains 300 million randomly sampled users searches from two months. Each row represents an ad that is shown to the user based on a search. The ads listed on Avito’s website consists of three types: regular free ads posted from users, paid ads which are highlighted and placed at the top of the page for a certain time and contextual ads in which the owner pays per visitor click. The goal is to discover insights on user behavior related to ad clicks as well as build a learning algorthm that will predict whether a user will click on a given ad.  For each record the following characteristics are available:</p>
+		<p>Avito, Russia’s largest general classified website allows sellers to place ads on their site for a wide variety of items from electrionics to cars to dogs and cats. Avito had over 31 million active listings in 2015. Although Avito provides a great wealth of goods and services for it's 70 million unique monthly visitors, the task of deciding which ads to show for each individual users is difficult. At the time, Avito used only general statistics on ad performance, not taking into account user behavior, making it difficult to provide relevant ads to its users. A result, Avito has provided a dataset that contains 300 million randomly sampled users searches from two months. Each row represents an ad that is shown to the user based on a search. The ads listed on Avito’s website consists of three types: regular free ads posted from users, paid ads which are highlighted and placed at the top of the page for a certain time and contextual ads in which the owner pays per visitor click. The goal is to discover insights on user behavior related to ad clicks as well as build a learning algorthm that will predict whether a user will click on a given ad.  For each record the following characteristics are available:</p>
 
 		<h2>Data Prep/Cleaning</h2>
 		<p>The dataset only contains click labels for contextual ads. Since I am interested in factors that drive ad clicks I drop all rows containing non contextual ads. Additionally, the data is about 11gb in size so a smaller subset of the first 500,000 records is used for the initial analysis due to memory constraints as well as computation time. </p>
@@ -185,14 +203,54 @@
 
     	<p>We can see that the website has the lowest number of clicks from 1AM to 8AM. The number of total clicks start to pick up from 8AM to 9AM. With this information we have a better understanding about the optimal times and days to place ads.</p>
 
-    	<h2>Search Users vs. Filter Users</h2>	
+    	<h2>Search Users vs. Filter Users vs. No Filter & No Search</h2>	
     	<p>Now that we have a general idea about when clicks are occuring we can go one layer deeper to find out what factors are driving these clicks. I was particularly interested in the question: how does ad click performance differ from users who enter a search query versus users who just click the filter by category option?</p>
 
     	<div id="chart2area"></div>
-		<script src="pie.js"></script>
-		<script src="ad_click_rates.js"></script>
+		<script src="js/pie.js"></script>
+		<script src="js/ad_click_rates.js"></script>
 
-		<p>Wow, only 18% of users enter a search query. What's really interesting is that search users are more than two times more likely to click on an ad compared to users who only click on the filter option or those who don't search or filter at all!  </p>
+
+		<p>Wow, only 18% of users enter a search query. What's really suprising is that search users are more than two times more likely to click on an ad compared to users who only click on the filter option or those who don't search or filter at all! A reason for this difference may be because users who enter a search query have a specific item in mind and know what they want before coming onto the site in which the user may already be in "buying mode". Whereas users who only click on the filter option don’t have a specific item in mind and are still in "exploring mode". The barchart above shows that as users are less specific, the lower the likeihood of clicking on an ad. So we need to find a way to provide relevant ads that are specific to each individual user to aid them during the "exploring phase". I'll address this later when I build a learning algorithm to help solve this issue but for now lets dive a little deeper into what drives search users to click on ads.
+		</p>
+
+		<h2>Search User Behavior</h2>
+		<p>What are the top items users are querying for?</p>
+
+		<div id="chart4area"></div>
+
+		<p>Looks like the top item users are searching for is a bike. It has over 2x more searches than any other of the top searches which is kind of odd. Why are so many users searching for a bike?</p>
+
+		<h2>Target Audience</h2>
+		<p>Remember that this dataset is a random sample of user searches from two months? Well it turns out that the two months are April and May. These are the summer months in Russia and in St. Petersburg, May is when the White Nights occur. This is the time when locals revel in the heat and night becomes nearly indistinguishable from day with festivals and partying everywhere. This could be a reason why a bike is at the top of everyone's wishlist.</p>
+
+		<p>Taking another look at user's top searches, it seems like there's some commonality between the items. Bikes, strollers, shoes, sofas and fridges all seem like items couples who are just starting a family wth a new child, moving into a new home would buy. So I decided to take a look at Russia's birth rates to see if there's anything interesting going on there.</p> 
+		<div id="mapchartarea"></div>
+		<script src="js/fertility_map.js"></script>
+
+		<p>From the map, Russia's 2014 Total Fertility Rate, which measures the expected number of children a women will bear in her lifetime is relatively high compared to the rest of Europe. This means that Russia's demographic consists of a high number of women in their child bearing years. This is really interesting and gives us insight on the type of demographic the ads are attracting as well as who should be targeted.</p>
+
+		<h2>Click Behavior</h2>
+		<p>Now that we have a good understanding of what user's are searching for and why let's see which ads are actually being clicked and find out why. </p>	
+		<p> Going back to the user's who searched for a bike, which ads are being shown the most and what are their corresponding CTRs?</p>
+
+		<div id="chart5area"></div>
+		<script src="js/dual_barchart.js"></script>
+
+		<p>We can see a very high level to variability in CTRs for the top five bike ads shown. The highest shown ad has a 2.2% CTR while the second and third have a 0% CTR. Then we have the fourth most shown ad that has the highest CTR of 4%. So why are CTRs so variable? And why do two ads that are shown so often have a 0% CTR?</p>
+
+		<h2>User Preferences</h2>
+		<img src="images/bikes_slide.jpg" height="500" width="600">
+
+		<p>The left two items are ad's that have the highest CTR's. The two items on the right have a 0% CTR. The bottom right item looks like an outlier. It seems users are searching for bikes where one can freely ride on or use as a mode of transportation which may explain why this ad gets no clicks. Although the item is suitable for the demographic profile that was identified earlier, it just isn't what users are looking for. On the other hand, the top right item seems like a bike one can ride freely and use for transporation but this is an adult bike. The two other items on the left with the highest CTR satisfiy both criteria. One can freely use it as a mode of transporation and they are bikes designed for children. From this observation we see how individual user preference plays a central role in maximizing ad success.</p>
+
+		<h2>Ad Price Level</h2>
+		<p>After seeing how important it is to provide ads that are relevant to individual preferences, I wanted to see how price levels affect ad performance. More specifically, for the bike search users, what price range are the majority of our users looking to purchanse a bike for?</p>
+
+		<h2>Summary</h2>
+
+
+
 
 		</section>
 	</div>
