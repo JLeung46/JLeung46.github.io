@@ -3,171 +3,11 @@
 	<head>
     <meta charset="utf-8">
     <title></title>
-    <script type="text/javascript" src="js/d3.min.js"></script>
-
-    <script type="text/javascript">
-
-    </script>
-
-    <style type="text/css">
-
-		#roundBorder {
-		    border-radius: 25px;
-		    border: 2px solid #FF1493;
-		    padding: 20px;
-		    max-width: 500px;
-		}
-
-		#header_wrapper{
-			background: #373737;
-			padding-bottom: 50px;
-		}
-
-		#header_wrapper .inner{
-			padding: 50px, 10px, 30px, 10px;
-
-		}
-
-		#my_title{
-			color: #fff;
-			font-size: 42px;
-
-		}
-
-		#my_name{
-			font-size: 24px;
-
-
-		}
-
-		#chart2area{
-			float:left;
-			width:100%;
-			display:inline-block;
-		}
-
-		.tab { margin-left: 40px; 
-		}
-
-		body{
-
-			margin: 0 auto;
-		}
-
-		.inner{
-			position: relative;
-			max-width: 640px;
-			padding: 20px 10px;
-			margin: 0 auto;
-		}
-
-		.bar:hover {
-		  fill: green;
-		}
-
-		rect.bordered {
-			stroke: #E6E6E6;
-			stroke-width:2px;
-		}
-
-		text.mono{
-			font-size: 9pt;
-			font-family: Consolas, courier;
-			fill: #aaa;
-		}
-
-		text.axis-workweek{
-			fill: #000;
-		}
-
-		.arc text {
-		  font: 10px sans-serif;
-		  text-anchor: middle;
-		}
-
-		.arc path {
-		  stroke: #fff;
-		}
-
-		.legend rect {
-		 fill:white;
-		 stroke:black;
-		 opacity:0.8; }
-
-		.axis path,
-		.axis line {
-		  fill: none;
-		  stroke: #000;
-		  shape-rendering: crispEdges;
-		}
-
-		.bar {
-		  fill: orange;
-		}
-
-		.bar2:hover {
-		  fill: orangered ;
-		}
-
-		.x.axis path {
-		  display: none;
-		}
-
-		.d3-tip {
-		  line-height: 1;
-		  font-weight: bold;
-		  padding: 12px;
-		  background: rgba(0, 0, 0, 0.8);
-		  color: #fff;
-		  border-radius: 2px;
-		}
-
-		/* Creates a small triangle extender for the tooltip */
-		.d3-tip:after {
-		  box-sizing: border-box;
-		  display: inline;
-		  font-size: 10px;
-		  width: 100%;
-		  line-height: 1;
-		  color: rgba(0, 0, 0, 0.8);
-		  content: "\25BC";
-		  position: absolute;
-		  text-align: center;
-		}
-
-		/* Style northward tooltips differently */
-		.d3-tip.n:after {
-		  margin: -1px 0 0 0;
-		  top: 100%;
-		  left: 0;
-		}
-
-		/* Map Hover Effect */
-		path:hover {
-		  fill: rgba(8, 81, 156, 0.2);
-		  cursor:pointer;
-		}
-
-		/* Dual barchart style*/
-		.y.axisRight text {
-		    fill: orange;
-		}
-		.y.axisLeft text {
-		    fill: steelblue;
-		}
-
-		.bar1 {
-		  fill: steelblue;
-		}
-		.bar2 {
-		  fill: orange;
-		}
-
-
-	</style>
-			<script src="js/d3.v3.min.js"></script>
-			<script src="js/d3.legend.js"></script>
-			<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/d3.v3.min.js"></script>
+		<script src="js/d3.legend.js"></script>
+		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
 	</head>
 
@@ -247,7 +87,24 @@
 		<h2>Ad Price Level</h2>
 		<p>After seeing how important it is to provide ads that are relevant to individual preferences, I wanted to see how price levels affect ad performance. More specifically, for the bike search users, what price range are the majority of our users looking to purchanse a bike for?</p>
 
+		<p>It seems most users are looking to purchase a bike between $50 to $150. Ads that user's are shown most freqeuntly fall in the 50 to 200 range. 
 		<h2>Summary</h2>
+		Lets recap that we've learned about users while exploring is dataset.
+		Click activity is most frequent between 
+		Users who enter a serach query are over 2x more likely to click on an ad than who use just filter by category.
+		Seasonality plays a role in what users search for.
+		The majority of users on the site seem to fall in the category of young families with a small child perhaps moving into a new home.
+		Items being advertised have many features. It is important to ensure the features match what an individual user is looking for.
+		The price of an ad plays a role. This may be due to individual income levels but futher analysis is required.
+
+		<h2>Optimizing Ad Click Performance</h2>
+		<p>Now that we have all these insights in user behavior, how can we maximize the CTR of ads and better serve users? One solution is to build a model that captures individual characteristics such as what's been searched for, what's been clicked on and the price range of clicked ads. Additionally, global factors such as the season and previous ad performance can also be taken into account. By combining all these features we can build a model that learns patterns in individual user behavior and what ads are clicked. As a result, we can provide more relevant ads to users and improve CTRs.</p>
+
+		<h2>Data Preprocessing</h2>
+
+		<h2>Train / CV / Test Split</h2>
+
+		<h2>Modeling</h2>
 
 
 

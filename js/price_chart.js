@@ -1,35 +1,3 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-body {
-  font: 10px sans-serif;
-}
-.y.AxisRight2 text {
-    fill: #dc3912;
-}
-.y.axisLeft text {
-    fill: steelblue;
-}
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-.bar1 {
-  fill: steelblue;
-}
-.bar3 {
-  fill: #dc3912;
-}
-.x.axis path {
-  display: none;
-}
-</style>
-<body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
-
 var margin = {top: 80, right: 80, bottom: 80, left: 80},
     width = 600 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
@@ -75,26 +43,26 @@ d3.csv("../data/price_bin_data.csv", type, function(error, data) {
 
 
   svg.append("g")
-	  .attr("class", "y axis axisLeft")
-	  .attr("transform", "translate(0,0)")
-	  .call(yAxisLeft)
-	.append("text")
-	  .attr("y", 6)
-	  .attr("dy", "-2em")
-	  .style("text-anchor", "end")
-	  .style("text-anchor", "end")
-	  .text("Impressions");
-	
+    .attr("class", "y axis axisLeft")
+    .attr("transform", "translate(0,0)")
+    .call(yAxisLeft)
+  .append("text")
+    .attr("y", 6)
+    .attr("dy", "-2em")
+    .style("text-anchor", "end")
+    .style("text-anchor", "end")
+    .text("Impressions");
+  
   svg.append("g")
-	  .attr("class", "y axis AxisRight2")
-	  .attr("transform", "translate(" + (width) + ",0)")
-	  .call(yAxisRight2)
-	.append("text")
-	  .attr("y", 6)
-	  .attr("dy", "-2em")
-	  .attr("dx", "2em")
-	  .style("text-anchor", "end")
-	  .text("Clicks");
+    .attr("class", "y axis AxisRight2")
+    .attr("transform", "translate(" + (width) + ",0)")
+    .call(yAxisRight2)
+  .append("text")
+    .attr("y", 6)
+    .attr("dy", "-2em")
+    .attr("dx", "2em")
+    .style("text-anchor", "end")
+    .text("Clicks");
 
   bars = svg.selectAll(".bar").data(data).enter();
   bars.append("rect")
@@ -102,14 +70,14 @@ d3.csv("../data/price_bin_data.csv", type, function(error, data) {
       .attr("x", function(d) { return x(d.price_bin); })
       .attr("width", x.rangeBand()/2)
       .attr("y", function(d) { return y0(d.count); })
-	  .attr("height", function(d,i,j) { return height - y0(d.count); }); 
+    .attr("height", function(d,i,j) { return height - y0(d.count); }); 
 
   bars.append("rect")
       .attr("class", "bar3")
       .attr("x", function(d) { return x(d.price_bin) + x.rangeBand()/2; })
       .attr("width", x.rangeBand() / 2)
       .attr("y", function(d) { return y1(d.clicks); })
-	  .attr("height", function(d,i,j) { return height - y1(d.clicks); }); 
+    .attr("height", function(d,i,j) { return height - y1(d.clicks); }); 
 
   svg.append("text")
       .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
@@ -123,4 +91,3 @@ function type(d) {
   d.clicks = +d.clicks
   return d;
 }
-</script>
