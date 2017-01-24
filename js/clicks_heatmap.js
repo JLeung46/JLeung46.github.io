@@ -1,3 +1,4 @@
+(function(){
 var margin = {top:70, right: 0, bottom: 100, left:60},
 	width = 900 - margin.left - margin.right,
 	height = 430 - margin.top - margin.bottom,
@@ -95,4 +96,7 @@ function(error,data){
 };
 
 heatmapChart(datasets[0]);
+
+}());
+
 

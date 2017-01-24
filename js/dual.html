@@ -50,7 +50,7 @@ var yAxisLeft = d3.svg.axis().scale(y0).ticks(6).orient("left");
 // create right yAxis
 var yAxisRight2 = d3.svg.axis().scale(y1).ticks(6).orient("right");
 
-var svg = d3.select("body").append("svg")
+var pricechart = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -62,7 +62,7 @@ d3.csv("../data/price_bin_data.csv", type, function(error, data) {
   y0.domain([0, d3.max(data, function(d) { return d.count; })]);
   y1.domain([0, d3.max(data, function(d) { return d.clicks; })]);
   
-  svg.append("g")
+  pricechart.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
@@ -74,7 +74,7 @@ d3.csv("../data/price_bin_data.csv", type, function(error, data) {
       .style("text-anchor", "start");
 
 
-  svg.append("g")
+  pricechart.append("g")
 	  .attr("class", "y axis axisLeft")
 	  .attr("transform", "translate(0,0)")
 	  .call(yAxisLeft)
@@ -85,7 +85,7 @@ d3.csv("../data/price_bin_data.csv", type, function(error, data) {
 	  .style("text-anchor", "end")
 	  .text("Impressions");
 	
-  svg.append("g")
+  pricechart.append("g")
 	  .attr("class", "y axis AxisRight2")
 	  .attr("transform", "translate(" + (width) + ",0)")
 	  .call(yAxisRight2)
@@ -96,7 +96,7 @@ d3.csv("../data/price_bin_data.csv", type, function(error, data) {
 	  .style("text-anchor", "end")
 	  .text("Clicks");
 
-  bars = svg.selectAll(".bar").data(data).enter();
+  bars = pricechart.selectAll(".bar").data(data).enter();
   bars.append("rect")
       .attr("class", "bar1")
       .attr("x", function(d) { return x(d.price_bin); })
@@ -111,7 +111,7 @@ d3.csv("../data/price_bin_data.csv", type, function(error, data) {
       .attr("y", function(d) { return y1(d.clicks); })
 	  .attr("height", function(d,i,j) { return height - y1(d.clicks); }); 
 
-  svg.append("text")
+  pricechart.append("text")
       .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
       .attr("transform", "translate("+ (width/2) +","+(height-(padding/3))+")")  // centre below axis
       .text("Price");
