@@ -51,33 +51,33 @@
 		<script src="js/user_profile_ctrs.js"></script>
 
 
-		<p>Only 18% of users enter a search query which isn't too surprising because we expect most people to be just browsing. Most users don't go to a site knowing exactly what they want to buy before doing any sort of exploring. What's really striking is that users who enter a search query are over two times more likely to click on an ad compared to users who only click on the filter by category option or those who don't search or filter at all! Why is this? Well, one reason may be because users who enter a search query have a specific item in mind and know what they want before coming onto the site.Whereas users who only click on the filter option don’t have a specific item in mind and are still exploring. So as users are less specific, the lower the likeihood of clicking on an ad. How can we help users get more specific in what they're searching for? Since users who are just exploring aren't sure what they want to buy, we can help them narrow down the options by providing ads that are relevant based on their search behavior. We'll address this further later when I build a learning algorithm to help better serve relevant content but for now lets see if we can discover more about what drives users to click on an ad.
+		<p>Only 18% of users enter a search query which isn't too surprising because we expect most people who first land on a site to be just browsing. Most users don't go to a site knowing exactly what they want to buy before doing any sort of exploring beforehand. What's really striking is that users who enter a search query are over two times more likely to click on an ad compared to users who only click on the filter by category option or those who don't search or filter at all! Why is this? Well, one reason may be because users who enter a search query have a specific item in mind and know what they want before coming onto the site. Whereas users who only click on the filter option don’t have a specific item in mind and are still exploring. So as users are less specific, the lower the likeihood of clicking on an ad. How can we help users get more specific in what they're searching for? Since users who are just exploring and aren't sure what they want to buy, we can help them narrow down the options by providing ads that are relevant based on their search behavior. We'll address this further later when I build a learning algorithm to help better serve relevant content but for now lets see if we can discover more about what drives users to click on an ad.
 		</p>
 
 		<h2>Search User Behavior</h2>
-		<p>What are the top items users are querying for?</p>
+		<p>What are the top items users are searching for?</p>
 
 		<div id="chart4area"></div>
 		<script src="js/top_queries.js"></script>
 
-		<p>Looks like the top item users are searching for is a bike. It has over 2x more searches than any other of the top searches which is kind of odd. Why are so many users searching for a bike?</p>
+		<p>Looks like the top item users are searching for is a bike. In fact, of the top six items users are searching for, 35% of the searches are for a bike. Why are so many users searching for a bike?</p>
 
-		<p>Remember that this dataset is a random sample of user searches from two months? Well it turns out that the two months are April and May. These are the summer months in Russia and in St. Petersburg, May is when the White Nights occur. This is the time when locals revel in the heat and night becomes nearly indistinguishable from day with festivals and partying occurring all night. This could be a reason why a bike is at the top of everyone's wishlist, so they could enjoy the outdoors during the summer weather.</p>
+		<p>Well, remember that this dataset is a random sample of user searches from two months? It turns out that the two months are April and May! This is summer time in Russia and in St. Petersburg, May is when the famous White Nights occur. This is the time when locals revel in the heat and night becomes nearly indistinguishable from day with festivals and partying occurring all night. Maybe this is why a bike is at the top of everyone's wishlist, so they could enjoy the outdoors during the summer weather.</p>
 
-		<p>Taking another look at user's top searches, it seems like there's some commonality between the items. Bikes, strollers, shoes, sofas and fridges all seem like items couples who are just starting a family wth a new child, maybe moving into a new home would buy. So I decided to take a look at Russia's birth rates to see if there's anything interesting going on there.</p> 
+		<p>Taking another look at user's top searches, it seems like there's some commonality between the items. Bikes, strollers, shoes, sofas and bags all seem like items woman who are just starting a family wth a new child, maybe moving into a new home would buy. So I decided to take a look at Russia's birth rates to see if there's anything interesting going on there.</p> 
 		<div id="mapchartarea"></div>
 		<script src="js/fertility_map.js"></script>
 
-		<p>From the map, Russia's 2014 Total Fertility Rate, which measures the expected number of children a women will bear in her lifetime is relatively high compared to the rest of Europe. This means that Russia's demographic consists of a high number of women in their child bearing years. This is really interesting and gives us insight on the type of demographic the ads are attracting as well as how they can be tailored.</p>
+		<p>The map above shows Russia's 2014 Total Fertility Rate. It measures the expected number of children a women will bear in her lifetime. Compared to the rest of Europe, Russia's total fertility rate a quite high. Infact, in 2007 the Russian government introduced a program to pay $11,000 to mothers who have more than one child and in 2011, Vladimir Putin spent $53 billion to raise birthrates. How interesting! Now that we have this new insight, we have a better idea of the demographic profile ads are attracting as well as who ads should be catered to.</p>
 
 		<h2>Click Behavior</h2>
-		<p>Now that we have a good understanding of what user's are searching for and why let's see which ads are actually being clicked and find out why. </p>	
+		<p>Now that we have a good understanding of what user's are searching for and why let's see which ads are actually being clicked. </p>	
 		<p> Going back to the user's who searched for a bike, which ads are being shown the most and what are their corresponding CTRs?</p>
 
 		<div id="chart5area"></div>
 		<script src="js/impr_ctr_dualbar.js"></script>
 
-		<p>We can see a very high level of variability in CTRs for the top five bike ads shown. The ad with the highest number of impressions has a 2.2% CTR while the second and third have a 0% CTR. The fourth most seen ad that has the highest CTR of 4%. There's definetly alot of room for improvement here. Why are CTRs so variable? And why do two ads that are shown so often have a 0% CTR?</p>
+		<p>We can see a very high level of variability in CTRs for bikes with the top five impressions. The ad with the highest number of impressions has a 2.2% CTR while the second and third have a 0% CTR. The fourth most seen ad has the highest CTR of 4%. There's definetly alot of room for improvement here. Why are CTRs so variable? And why do two ads that are shown so often have a 0% CTR?</p>
 
 		<h2>User Preferences</h2>
 		<img src="images/bikes_slide.jpg" height="500" width="600">
