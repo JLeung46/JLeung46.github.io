@@ -159,7 +159,37 @@
   		fill: #dc3912;
 		}
 
+		/* Side barChart Style */
+        .chart {
+            margin: 5px;
+            padding-top: 10px;
+        }
 
+        .chart .right {
+            stroke: white;
+            fill: indianred;
+        }
+
+        .chart .left {
+            stroke: white;
+            fill: steelblue;
+        }
+
+        .chart rect:hover {
+            fill: #64707d;
+        }
+
+        .chart text {
+            fill: #24da82;
+        }
+
+        .chart text.name {
+            fill: black;
+        }
+
+        .chart text.title {
+            fill: #2216ff;
+        }
 
 
 

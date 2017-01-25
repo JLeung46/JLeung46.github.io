@@ -1,6 +1,8 @@
-var width2 = 760,
-    height2 = 300,
-    radius = Math.min(width2, height2) / 2;
+(function(){
+
+var width = 760,
+    height = 300,
+    radius = Math.min(width, height) / 2;
 
 var color = d3.scale.ordinal()
     .range(["#dc3912", "#109618"]);
@@ -18,10 +20,10 @@ var pie = d3.layout.pie()
     .value(function(d) { return d.Percent; });
 
 var chart2 = d3.select("#chart2area").append("svg")
-    .attr("width", width2)
-    .attr("height", height2)
+    .attr("width", width)
+    .attr("height", height)
   .append("g")
-    .attr("transform", "translate(" + width2 / 3.5 + "," + height2 / 2 + ")");
+    .attr("transform", "translate(" + width / 3.5 + "," + height / 2 + ")");
 
 d3.csv("../data/search_filter_percent.csv", type, function(error, data) {
   if (error) throw error;
@@ -57,3 +59,5 @@ function type(d) {
   d.Percent = +d.Percent;
   return d;
 }
+
+}());

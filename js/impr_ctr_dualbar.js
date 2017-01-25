@@ -3,18 +3,22 @@
 var margin = {top: 80, right: 80, bottom: 80, left: 80},
     width = 600 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
+
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], .1);
-var y00 = d3.scale.linear().domain([height, 1100]).range([height, 0]);
-var y11 = d3.scale.linear().range([height, 0]);
+
+var y0 = d3.scale.linear().domain([height, 1100]).range([height, 0]);
+
+var y1 = d3.scale.linear().range([height, 0]);
+
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
 // create left yAxis
-var yAxisLeft = d3.svg.axis().scale(y00).ticks(4).orient("left");
+var yAxisLeft = d3.svg.axis().scale(y0).ticks(4).orient("left");
 
 // create right yAxis
-var yAxisRight = d3.svg.axis().scale(y11).ticks(6).orient("right");
+var yAxisRight = d3.svg.axis().scale(y1).ticks(6).orient("right");
 
 var CTRchart = d3.select("#chart5area").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -22,10 +26,11 @@ var CTRchart = d3.select("#chart5area").append("svg")
   .append("g")
     .attr("class", "graph")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 d3.csv("../data/top_bike_ads_data.csv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.AdID; }));
-  y00.domain([0, d3.max(data, function(d) { return d.Impressions; })]);
-  y11.domain([0, d3.max(data, function(d) { return d.CTR; })]);
+  y0.domain([0, d3.max(data, function(d) { return d.Impressions; })]);
+  y1.domain([0, d3.max(data, function(d) { return d.CTR; })]);
   
   CTRchart.append("g")
       .attr("class", "x axis")
@@ -54,19 +59,22 @@ d3.csv("../data/top_bike_ads_data.csv", type, function(error, data) {
 	  .text("CTR (%)");
 
   bars = CTRchart.selectAll(".bar").data(data).enter();
+
   bars.append("rect")
       .attr("class", "bar1")
       .attr("x", function(d) { return x(d.AdID); })
       .attr("width", x.rangeBand()/2)
-      .attr("y", function(d) { return y00(d.Impressions); })
-	  .attr("height", function(d,i,j) { return height - y00(d.Impressions); }); 
+      .attr("y", function(d) { return y0(d.Impressions); })
+	  .attr("height", function(d,i,j) { return height - y0(d.Impressions); }); 
+
   bars.append("rect")
       .attr("class", "bar2")
       .attr("x", function(d) { return x(d.AdID) + x.rangeBand()/2; })
       .attr("width", x.rangeBand() / 2)
-      .attr("y", function(d) { return y11(d.CTR); })
-	  .attr("height", function(d,i,j) { return height - y11(d.CTR); }); 
+      .attr("y", function(d) { return y1(d.CTR); })
+	  .attr("height", function(d,i,j) { return height - y1(d.CTR); }); 
 });
+
 function type(d) {
   d.Impressions = +d.Impressions;
   return d;
