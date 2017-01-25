@@ -36,12 +36,12 @@
 		<h2>Data Prep</h2>
 		<p>The dataset only contains click labels for contextual ads. Since I am interested in factors that drive ad clicks I drop all rows containing non contextual ads. Additionally, the data is about 11gb in size so a smaller subset of the first 500,000 records is used for the initial analysis due to memory constraints as well as computation time. </p>
 		<h2>Overall Website Activity</h2>
-		<p>To begin, I was interested in seeing how the website was performing overall. When were clicks occuring most frequently and when was click activity the lowest?</p>
+		<p>To begin, let's get an overall picture of how click activity looks during the week. It may reveal weird errors in the data and it'll give us a better understanding of when the site receives the most traffic.</p>
 		
 		<div id="chart"></div>
 		<script src="js/clicks_heatmap.js"></script>
 
-    	<p>We can see that the website has the lowest number of clicks from 1AM to 8AM. The number of total clicks start to pick up from 8AM to 9AM. From 10AM to 10PM is when click traffic is most dense which stays steady during this window. After 10PM, click activity starts to slow down.</p>
+    	<p>We can see the lowest number of clicks occur from 1AM to 8AM which makes sense since most people are asleep at this time. Click activity starts to pick up from 8AM to 9AM which is when most people wake up. From 10AM to 10PM is when click traffic is most dense and it seems to stays steady during this window. After 10PM, when most people are sleeping, click activity starts to slow down. So it seems nothing too weird is happening, the data makes sense and now we know the optimal times to serve ads to users.</p>
 
     	<h2>Search Users vs. Filter Users vs. No Filter & No Search</h2>	
     	<p>Now that we have a general idea about when clicks are occuring we can go another layer deeper to find out what factors are driving these clicks. I was particularly interested in the question: how does ad click performance differ from users who enter a search query versus users who just click the filter by category option?</p>
