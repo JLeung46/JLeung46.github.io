@@ -3,9 +3,9 @@ var margin = {top:70, right: 0, bottom: 100, left:60},
 	width = 900 - margin.left - margin.right,
 	height = 430 - margin.top - margin.bottom,
 	gridSize = Math.floor(width / 24), // Takes width of svg and sets size of each column. Need to floor so doesn't go past width size. Dynamically scales according to width size.
-	legendElementWidth = gridSize*2,
+	legendWidth 	= gridSize*2,
 	buckets = 9,
-	colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],
+	colors = ["#e6eeff","#ccdcff","#b3cbff","#ccb3ff","#bb99ff","#aa80ff","#ff6666","#ff3333","#cc0000"],
 	days = ["Mo","Tu","We","Th","Fr","Sa","Su"],
   	times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
   	datasets = ['../data/heatmap_data.csv'];
@@ -78,16 +78,16 @@ function(error,data){
 		.attr('class', 'legend');
 
 	legend.append('rect')
-		.attr('x', function(d,i){return legendElementWidth * i})
+		.attr('x', function(d,i){return legendWidth 	* i})
 		.attr('y', height)
-		.attr('width', legendElementWidth)
+		.attr('width', legendWidth)	
 		.attr('height', gridSize / 2)
 		.style('fill', function(d,i) { return colors[i];});
 
 	legend.append('text')
 		.attr('class', 'mono')
 		.text(function(d) { return "≥ " + Math.round(d); })
-		.attr('x', function(d,i){ return legendElementWidth*i;})
+		.attr('x', function(d,i){ return legendWidth*	i;})
 		.attr('y',height + gridSize);
 
 	legend.exit().remove();

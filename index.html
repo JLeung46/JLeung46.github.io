@@ -34,9 +34,9 @@
 		<p>Avito, Russia’s largest general classified website allows sellers to place ads on their site for a wide variety of items from electrionics to cars to dogs and cats. Avito had over 31 million active listings in 2015. Although Avito provides a great wealth of goods and services for it's 70 million unique monthly visitors, the task of deciding which ads to show for each individual users is difficult. At the time, Avito used only general statistics on ad performance, not taking into account user behavior, making it difficult to provide relevant ads to its users. To mitigate this, Avito has provided a dataset that contains 300 million randomly sampled users searches from two months. Each row represents an ad that is shown to the user based on a search. The ads listed on Avito’s website consists of three types: regular free ads posted from users, paid ads which are highlighted and placed at the top of the page for a certain time and contextual ads in which the owner pays per visitor click. The goal is to discover insights in user behavior related to ad clicks as well as build a learning algorthm that will predict whether a user will click on a given ad.  For each record the following characteristics are available:</p>
 
 		<h2>Data Prep</h2>
-		<p>The dataset contains a total of 300 million records. Only click labels for contextual ads are provided. For this analysis, I am interested in factors that drive ad clicks so I drop all rows containing non contextual ads which amounts to 190 million records. Additionally, the data is about 11gb in size so a smaller subset of the first 500,000 records is used for this initial analysis due to memory constraints as well as computation time. </p>
+		<p>The dataset contains a total of 300 million records. Only click labels for contextual ads are provided. For this analysis, I am interested in factors that drive ad clicks so I drop all rows containing non contextual ads which amounts to 190 million records. Additionally, the entire dataset is about 40gb in size so a smaller subset of the first 500,000 records is used for this initial analysis due to memory constraints as well as computation time. </p>
 		<h2>Overall Website Activity</h2>
-		<p>To begin, let's get an overall picture of how click activity looks during the week. It may reveal weird errors in the data and it'll give us a better understanding of when the site receives the most traffic.</p>
+		<p>To begin, let's get an overall picture of how click activity looks during the week. It may reveal errors in the data and it'll give us a better understanding of when the site receives the most traffic.</p>
 		
 		<div id="chart"></div>
 		<script src="js/clicks_heatmap.js"></script>
@@ -60,7 +60,7 @@
 		<div id="chart4area"></div>
 		<script src="js/top_queries.js"></script>
 
-		<p>Looks like the top item users are searching for is a bike. In fact, of the top six items users are searching for, 35% of the searches are for a bike. Why are so many users searching for a bike?</p>
+		<p>Looks like the top item users are searching for is a bike. In fact, of the top six items users are searching for, 35% of the searches are for a bike! Why are so many users searching for a bike?</p>
 
 		<p>Well, remember that this dataset is a random sample of user searches from two months? It turns out that the two months are April and May! This is summer time in Russia and in St. Petersburg, May is when the famous White Nights occur. This is the time when locals revel in the heat and night becomes nearly indistinguishable from day with festivals and partying occurring all night. Maybe this is why a bike is at the top of everyone's wishlist, so they could enjoy the outdoors during the summer weather.</p>
 
