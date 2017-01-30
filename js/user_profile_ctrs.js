@@ -20,7 +20,7 @@ var yAxis = d3.svg.axis()
     .orient("left");
 
 
-var chart3 = d3.select("#chart2area").append("svg")
+var chart3 = d3.select("#chart3area").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -42,7 +42,7 @@ d3.csv("data/ad_click_rates.csv", type, function(error, data) {
     .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
-      .attr("dy", ".71em")
+      .attr("dy", ".71em");
 
   chart3.selectAll(".bar")
       .data(data)

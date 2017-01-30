@@ -26,12 +26,14 @@
 
 
 		}
-
+		  
 		#chart2area{
-			float:left;
-			width:100%;
-			display:inline-block;
-		}
+		  	float:left;
+		  }
+		
+		#chart3area{
+		  	float:left;
+		  }
 
 		.tab { margin-left: 40px; 
 		}

@@ -46,10 +46,17 @@
     	<h2>Search Users vs. Filter Users vs. No Filter & No Search</h2>	
     	<p>Now that we have a general idea about when clicks are occuring, we can go another layer deeper to find out what factors are driving these clicks. I was particularly interested in the question: how does ad click performance differ from users who enter a search query versus users who just click the filter by category option?</p>
 
-    	<div id="chart2area"></div>
+    	<div style="white-space: nowrap;">
+
+    	<div id="chart2area" style="display: inline float: left;"></div>
+
 		<script src="js/pie.js"></script>
+
+		<div id="chart3area" style="display: inline"></div>
+
 		<script src="js/user_profile_ctrs.js"></script>
 
+		</div>
 
 		<p>Only 18% of users enter a search query which isn't too surprising because we expect most people who first land on a site to be just browsing. Most users don't go to a site knowing exactly what they want to buy before doing any sort of exploring beforehand. What's really striking is that users who enter a search query are over two times more likely to click on an ad compared to users who only click on the filter by category option or those who don't search or filter at all! Why is this? Well, one reason may be because users who enter a search query have a specific item in mind and know what they want before coming onto the site. Whereas users who only click on the filter option don’t have a specific item in mind and are still exploring. So as users are less specific, the lower the likeihood of clicking on an ad. How can we help users get more specific in what they're searching for? Since users who are just exploring and aren't sure what they want to buy, we can help them narrow down the options by providing ads that are relevant based on their search behavior. We'll address this further later when I build a learning algorithm to help better serve relevant content but for now lets see if we can discover more about what drives users to click on an ad.
 		</p>
@@ -109,12 +116,8 @@
 
 		<p>Now that we have all these insights in user behavior, how can we maximize the CTR of ads and better serve users? One solution is to build a model that captures the behavior and characteristics of each individual user as well as global factors such as the season and historical ad performance to determine the likelihood of a user clicking a given ad. With this, we can provide more relevant ads to users as well as optimize ad CTRs. It's a winning solution for both buyers and sellers!</p>
 
-		<h2>Data Preprocessing</h2>
-		<p>Before training the model, I did some preprocessing on the data which includes: </p>
-
-		<h2>Train / CV / Test Split</h2>
-
-		<h2>Modeling</h2>
+		<h2>Model Performance</h2>
+		<img src="images/roc.png" height="400" width="600">
 
 
 
