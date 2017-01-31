@@ -46,17 +46,15 @@
     	<h2>Search Users vs. Filter Users vs. No Filter & No Search</h2>	
     	<p>Now that we have a general idea about when clicks are occuring, we can go another layer deeper to find out what factors are driving these clicks. I was particularly interested in the question: how does ad click performance differ from users who enter a search query versus users who just click the filter by category option?</p>
 
-    	<div style="white-space: nowrap;">
-
-    	<div id="chart2area" style="display: inline float: left;"></div>
+    	<div id="chart2area" style="float:none;"></div>
 
 		<script src="js/pie.js"></script>
 
-		<div id="chart3area" style="display: inline"></div>
+		<div id="chart3area" style="float:none;"></div>
 
 		<script src="js/user_profile_ctrs.js"></script>
 
-		</div>
+
 
 		<p>Only 18% of users enter a search query which isn't too surprising because we expect most people who first land on a site to be just browsing. Most users don't go to a site knowing exactly what they want to buy before doing any sort of exploring beforehand. What's really striking is that users who enter a search query are over two times more likely to click on an ad compared to users who only click on the filter by category option or those who don't search or filter at all! Why is this? Well, one reason may be because users who enter a search query have a specific item in mind and know what they want before coming onto the site. Whereas users who only click on the filter option don’t have a specific item in mind and are still exploring. So as users are less specific, the lower the likeihood of clicking on an ad. How can we help users get more specific in what they're searching for? Since users who are just exploring and aren't sure what they want to buy, we can help them narrow down the options by providing ads that are relevant based on their search behavior. We'll address this further later when I build a learning algorithm to help better serve relevant content but for now lets see if we can discover more about what drives users to click on an ad.
 		</p>
@@ -122,7 +120,7 @@
 		<h2>Model Insights</h2>
 		<div id="coeffschartarea"></div>
 		<script src="js/coeffs_chart.js"></script>
-		<p>The chart above shows some of the noteworthy insights provided by the model. As highlighted from our initial analysis, we see that whether a user entered a search query is a high predictor of whether a user will click an ad or not. Furthermore, the model reveals that one of the greatest predictors is the number of ads shown to a user during a search which is something we overlooked during the analysis. Other interesting insights show that as the number of user impressions increases, this will lower the probability of an ad being clicked. A reason for this may be that users are making many searches because they cannot find what they're looking for. Lastly, if a user is logged into their account, he/she is also less likely to click an ad then user's who havent logged in.</p>
+		<p>The chart above shows some of the noteworthy insights provided by the model. As highlighted from our initial analysis, we see that whether a user entered a search query or not is a high predictor of a user clicking an ad. Furthermore, the model reveals that one of the greatest predictors is the number of ads shown to a user during a search. It would be interesting to see if this holds the same amount of weight for using who enter a search query vs. those who just filter by category. Perhaps users are less likely to click an ad when too few are shown because there isn't enough variety or the ads don't match their preferences. Lastly, if a user is logged into their account, he/she is less likely to click an ad then user's who havent logged in. I wonder how users who log in behave differently from users who don't and what caused users to make an account in the first place? There alot more to explore with user behavior so we'll have to save these questions for a future analysis.</p>
 
 
 

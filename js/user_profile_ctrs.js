@@ -1,7 +1,7 @@
 (function(){
 
 var margin = {top: 40, right: 40, bottom: 30, left: 40},
-    width = 460 - margin.left - margin.right,
+    width = 560 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
 
@@ -38,11 +38,7 @@ d3.csv("data/ad_click_rates.csv", type, function(error, data) {
 
   chart3.append("g")
       .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em");
+      .call(yAxis);
 
   chart3.selectAll(".bar")
       .data(data)
@@ -51,7 +47,9 @@ d3.csv("data/ad_click_rates.csv", type, function(error, data) {
       .attr("x", function(d) { return x(d.User_Type); })
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.Percent); })
-      .attr("height", function(d) { return height - y(d.Percent); })
+      .attr("height", function(d) { return height - y(d.Percent); });
+
+
 
 });
 
