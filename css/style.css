@@ -197,6 +197,15 @@
             fill: #2216ff;
         }
 
+        /* Coefficient Chart Style */
+        .bar--positive {
+  			fill: steelblue;
+		}
+
+		.bar--negative {
+  			fill: darkorange;
+		}
+
 
 
 
