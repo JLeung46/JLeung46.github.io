@@ -55,7 +55,6 @@ d3.csv("../data/search_filter_percent.csv", type, function(error, data) {
       .call(d3.legend);
 
 
-
 });
 
 
