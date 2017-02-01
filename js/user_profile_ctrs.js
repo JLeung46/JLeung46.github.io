@@ -69,7 +69,7 @@ d3.csv("data/ad_click_rates.csv", type, function(error, data) {
         .attr("text-anchor", "middle")  
         .style("font-size", "16px") 
         .style("text-decoration", "underline")  
-        .text("CTR Percentages for Different User Types");
+        .text("CTR for Different User Types");
 
 
 });
