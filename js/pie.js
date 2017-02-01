@@ -55,14 +55,6 @@ d3.csv("../data/search_filter_percent.csv", type, function(error, data) {
       .call(d3.legend);
 
 
-  // Add Title
-  chart2.append("text")
-        .attr("x", (width / 2))             
-        .attr("y", 0 - (margin.top / 2))
-        .attr("text-anchor", "middle")  
-        .style("font-size", "16px") 
-        .style("text-decoration", "underline")  
-        .text("Percentage of Search Users & Filter Users");
 
 });
 
