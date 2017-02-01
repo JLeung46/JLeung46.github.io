@@ -1,6 +1,6 @@
 (function(){
 
-var margin = {top: 40, right: 40, bottom: 30, left: 40},
+var margin = {top: 40, right: 40, bottom: 30, left: 90},
     width = 560 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
@@ -18,6 +18,11 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
+
+// Define these so we have room for the y-axis label.
+// The axisLabelX negative value ensure we dont overlap the y-axis tick labels.
+var axisLabelX = -50;
+var axisLabelY = height / 2;
 
 
 var chart3 = d3.select("#chart3area").append("svg")
@@ -49,6 +54,13 @@ d3.csv("data/ad_click_rates.csv", type, function(error, data) {
       .attr("y", function(d) { return y(d.Percent); })
       .attr("height", function(d) { return height - y(d.Percent); });
 
+  chart3
+    .append('g')
+    .attr('transform', 'translate(' + axisLabelX + ', ' + axisLabelY + ')')
+    .append('text')
+    .attr('text-anchor', 'middle')
+    .attr('transform', 'rotate(-90)')
+    .text('CTR (%)');
 
 
 });
