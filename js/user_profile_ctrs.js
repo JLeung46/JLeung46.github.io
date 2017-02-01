@@ -1,8 +1,8 @@
 (function(){
 
-var margin = {top: 40, right: 40, bottom: 30, left: 90},
+var margin = {top: 90, right: 40, bottom: 20, left: 90},
     width = 560 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    height = 400 - margin.top - margin.bottom;
 
 
 var x = d3.scale.ordinal()
@@ -54,13 +54,22 @@ d3.csv("data/ad_click_rates.csv", type, function(error, data) {
       .attr("y", function(d) { return y(d.Percent); })
       .attr("height", function(d) { return height - y(d.Percent); });
 
-  chart3
-    .append('g')
+  // Add y-axis label
+  chart3.append('g')
     .attr('transform', 'translate(' + axisLabelX + ', ' + axisLabelY + ')')
     .append('text')
     .attr('text-anchor', 'middle')
     .attr('transform', 'rotate(-90)')
     .text('CTR (%)');
+
+// Add Title
+  chart3.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .text("CTR Percentages for Different User Types");
 
 
 });

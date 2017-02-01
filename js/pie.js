@@ -1,6 +1,7 @@
 (function(){
 
-var width = 760,
+var margin = {top: 90, right: 40, bottom: 20, left: 90},
+    width = 760,
     height = 300,
     radius = Math.min(width, height) / 2;
 
@@ -51,7 +52,18 @@ d3.csv("../data/search_filter_percent.csv", type, function(error, data) {
       .attr("class", "legend")
       .attr("transform", "translate(70,30)")
       .style("font-size", "18px")
-      .call(d3.legend)
+      .call(d3.legend);
+
+
+  // Add Title
+  chart2.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .text("Percentage of Search Users & Filter Users");
+
 });
 
 

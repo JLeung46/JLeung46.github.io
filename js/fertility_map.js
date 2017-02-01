@@ -1,5 +1,6 @@
-			var width5 = 700;
-			var height5 = 500;
+			var margin = {top: 40, right: 40, bottom: 20, left: 90},
+				width5 = 700;
+				height5 = 500;
 
 			buckets = 8,
 
@@ -7,7 +8,7 @@
 
 			colors = ["#adfcad", "#99ddff", "#4dc3ff","#ffcb40", "#ffba00", "#ff7d73", "#ff4e40", "#ff1300"]
 
-			var legend_labels = ["<1.3", "1.3-1.39", "1.4-1.49", "1.5-1.59", "1.6-1.69", "1.7-1.79","1.8-1.89","1.9+"]              
+			//var legend_labels = ["<1.3", "1.3-1.39", "1.4-1.49", "1.5-1.59", "1.6-1.69", "1.7-1.79","1.8-1.89","1.9+"]              
 
 
 			var projection = d3.geo.mercator()
@@ -58,8 +59,8 @@
 			    })
 			    .attr("text-anchor","middle")
 			    .attr('font-size','6pt');
+
 			   
-		
 			});
 
 			//Adding legend for our Choropleth
