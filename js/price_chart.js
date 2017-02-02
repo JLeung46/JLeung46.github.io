@@ -1,93 +1,119 @@
-(function(){
+ (function(){
 
-var margin = {top: 80, right: 80, bottom: 95, left: 80},
-    width = 600 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+var labelArea = 160;
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .2);
+var chart,
+        width = 280,
+        bar_height = 20,
+        height = bar_height * 20;
+        
+var rightOffset = width + labelArea - 20;
 
-var y1 = d3.scale.linear().domain([height, 1100]).range([height, 0]);
+var xFrom = d3.scale.linear()
+        .range([0, width]);
+var xTo = d3.scale.linear()
+        .range([0, width]);
+var y = d3.scale.ordinal()
+        .rangeBands([20, height]);
 
-var y2 = d3.scale.linear().range([height, 0]);
+function render(data) {
+    var chart = d3.select("#sidechartarea")
+            .append('svg')
+            .attr('class', 'chart')
+            .attr('width', labelArea + width + width)
+            .attr('height', height);
 
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-// create left yAxis
-var yAxisLeft = d3.svg.axis().scale(y1).ticks(6).orient("left");
+    xFrom.domain(d3.extent(data, function (d) {
+        return d.count;
+    }));
+    xTo.domain(d3.extent(data, function (d) {
+        return d.clicks;
+    }));
 
-// create right yAxis
-var yAxisRight = d3.svg.axis().scale(y2).ticks(6).orient("right");
+    y.domain(data.map(function (d) {
+        return d.price_bin;
+    }));
 
-var pricechart = d3.select("#chart6area").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("class", "graph")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var yPosByIndex = function (d) {
+        return y(d.price_bin);
+    };
+    chart.selectAll("rect.left")
+            .data(data)
+            .enter().append("rect")
+            .attr("x", function (d) {
+                return width - xFrom(d.count);
+            })
+            .attr("y", yPosByIndex)
+            .attr("class", "left")
+            .attr("width", function (d) {
+                return xFrom(d.count);
+            })
+            .attr("height", y.rangeBand());
+    chart.selectAll("text.leftscore")
+            .data(data)
+            .enter().append("text")
+            .attr("x", function (d) {
+                return width - xFrom(d.count)-25;
+            })
+            .attr("y", function (d) {
+                return y(d.price_bin) + y.rangeBand() / 2;
+            })
+            .attr("dx", "20")
+            .attr("dy", ".36em")
+            .attr("text-anchor", "end")
+            .attr('class', 'leftscore')
+            .text(function(d){return d.count;});
 
-d3.csv("../data/price_bin_data.csv", type, function(error, data) {
-  x.domain(data.map(function(d) { return d.price_bin; }));
-  y1.domain([0, d3.max(data, function(d) { return d.count; })]);
-  y2.domain([0, d3.max(data, function(d) { return d.clicks; })]);
-  
-  pricechart.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-      .selectAll("text")
-      .attr("y", 0)
-      .attr("x", 9)
-      .attr("dy", ".35em")
-      .attr("transform", "rotate(90)")
-      .style("text-anchor", "start");
+    chart.selectAll("text.name")
+            .data(data)
+            .enter().append("text")
+            .attr("x", (labelArea / 2) + width)
+            .attr("y", function (d) {
+                return y(d.price_bin) + y.rangeBand() / 2;
+            })
+            .attr("dy", ".20em")
+            .attr("text-anchor", "middle")
+            .attr('class', 'name')
+            .text(function(d){return d.price_bin;});
+
+    chart.selectAll("rect.right")
+            .data(data)
+            .enter().append("rect")
+            .attr("x", rightOffset)
+            .attr("y", yPosByIndex)
+            .attr("class", "right")
+            .attr("width", function (d) {
+                return xTo(d.clicks);
+            })
+            .attr("height", y.rangeBand());
+    chart.selectAll("text.score")
+            .data(data)
+            .enter().append("text")
+            .attr("x", function (d) {
+                return xTo(d.clicks) + rightOffset+25;
+            })
+            .attr("y", function (d) {
+                return y(d.price_bin) + y.rangeBand() / 2;
+            })
+            .attr("dx", -5)
+            .attr("dy", ".36em")
+            .attr("text-anchor", "end")
+            .attr('class', 'score')
+            .text(function(d){return d.clicks;});
+
+    chart.append("text").attr("x",width/3).attr("y", 10).attr("class","title").text("Impressions");
+    chart.append("text").attr("x",width/3+rightOffset).attr("y", 10).attr("class","title").text("Clicks");
+    chart.append("text").attr("x",width+labelArea/3).attr("y", 10).attr("class","title").text("USD ($)");
 
 
-  pricechart.append("g")
-    .attr("class", "y axis axisLeft")
-    .attr("transform", "translate(0,0)")
-    .call(yAxisLeft)
-  .append("text")
-    .attr("y", 6)
-    .attr("dy", "-2em")
-    .style("text-anchor", "end")
-    .style("text-anchor", "end")
-    .text("Impressions");
-  
-  pricechart.append("g")
-    .attr("class", "y axis AxisRight2")
-    .attr("transform", "translate(" + (width) + ",0)")
-    .call(yAxisRight)
-  .append("text")
-    .attr("y", 6)
-    .attr("dy", "-2em")
-    .attr("dx", "2em")
-    .style("text-anchor", "end")
-    .text("Clicks");
+}
 
-  bars2 = pricechart.selectAll(".bar").data(data).enter();
-
-  bars2.append("rect")
-      .attr("class", "bar1")
-      .attr("x", function(d) { return x(d.price_bin); })
-      .attr("width", x.rangeBand()/2)
-      .attr("y", function(d) { return y1(d.count); })
-    .attr("height", function(d,i,j) { return height - y1(d.count); }); 
-
-  bars2.append("rect")
-      .attr("class", "bar3")
-      .attr("x", function(d) { return x(d.price_bin) + x.rangeBand()/2; })
-      .attr("width", x.rangeBand() / 2)
-      .attr("y", function(d) { return y2(d.clicks); })
-    .attr("height", function(d,i,j) { return height - y2(d.clicks); }); 
-
-
-});
 function type(d) {
   d.count = +d.count;
   d.clicks = +d.clicks
   return d;
 }
+
+d3.csv("../data/price_bin_data.csv", type, render);
 
 }());
