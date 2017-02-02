@@ -62,7 +62,7 @@ d3.csv("data/ad_click_rates.csv", type, function(error, data) {
     .attr('transform', 'rotate(-90)')
     .text('CTR (%)');
 
-// Add Title
+/* Add Title
   chart3.append("text")
         .attr("x", (width / 2))             
         .attr("y", 0 - (margin.top / 2))
@@ -70,7 +70,7 @@ d3.csv("data/ad_click_rates.csv", type, function(error, data) {
         .style("font-size", "16px") 
         .style("text-decoration", "underline")  
         .text("CTR for Different User Types");
-
+*/
 
 });
 

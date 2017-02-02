@@ -72,7 +72,7 @@ d3.csv("../data/top_queries_count.csv", type, function(error, data) {
     .attr('transform', 'rotate(-90)')
     .text('Count');
 
-// Add Title
+/* Add Title
   chart.append("text")
         .attr("x", (width / 2))             
         .attr("y", 0 - (margin.top / 2))
@@ -80,7 +80,7 @@ d3.csv("../data/top_queries_count.csv", type, function(error, data) {
         .style("font-size", "16px") 
         .style("text-decoration", "underline")  
         .text("Top Search Items");
-
+*/
 
 });
 
