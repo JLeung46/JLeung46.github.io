@@ -3,7 +3,7 @@
 
 			buckets = 8,
 
-			colors = ['#ff1a1a','#ff471a','#ffd633','#ffff1a','#ccff33',' #66ff66','#00ff00',' #009900'];
+			colors = [' #cccccc','#ff471a','#ffd633','#ffff1a','#ccff33','#66ff66','#00ff00','#009900'];
 
     
 			var projection = d3.geo.mercator()
@@ -88,18 +88,19 @@
                       	color_json[val].push(feature.properties.fertility)
                       }
 					 }
+					 console.log(color_json)
               var final_legend_arr =[];
               var final_legend_colors =[];
              for(var prop in color_json) {
              	var obj = color_json[prop];
-             	 var min_of_array = Math.min.apply(Math, obj);
-             	 var max_of_array = Math.max.apply(Math, obj);
+             	 var min_of_array = Math.min.apply(Math, obj).toFixed(1);
+             	 var max_of_array = Math.max.apply(Math, obj).toFixed(1);
              	 final_legend_colors.push(prop);
              	 final_legend_arr.push(min_of_array +'-'+ max_of_array);
                  
              }
-              final_legend_colors.push('#FF0000');
-             	 final_legend_arr.push('Unknown');
+              //final_legend_colors.push('#FF0000');
+             	 //final_legend_arr.push('2.1+');
 			  var legend = mapchart.selectAll("g.legend")
 			  .data(final_legend_colors)
 			  .enter().append("g")
