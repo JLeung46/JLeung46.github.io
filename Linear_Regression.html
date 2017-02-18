@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/x-mathjax-config">
+		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	</script>
+	<script type="text/javascript" async
+  		src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+  	</script>
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+	</head>
+
+<body>
+
+	<div id="header_wrapper" style="padding-top:10px; padding-left:25px">
+		<header class='inner'>
+			<h1 id='my_title'>
+				One with Data
+			</h1>
+			<h2 id='my_name'>
+				Jack<span style="color:#8ACFF6;">Leung</span>
+			</h2>
+		</header>
+	</div>
+
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+      	<p>I took Andrew Ng's Machine Learning course on Coursera a while back so I thought I'd share the notes I took here.</p>
+		<h1>Linear Regression</h1>
+		<p>Linear Regression is a supervised learning algorithm that takes input variables and tries to map the output to a continuous expected result function.</p>
+		<p>Linear Regression with one variable is also known as univariate linear regression which we'll use in this example to keep things simple. Univariate linear regression is used when we want to predict a single output value from a single input value.</p>
+
+		<h2>The Hypothesis Function:</h2>
+
+		<p style="font-size:25px; text-align:center;"> h<sub>θ</sub>(x) = θ<sub>0</sub> + θ<sub>1</sub>x </p>
+
+		<p>We plug in values for θ<sub>0</sub> and θ<sub>1</sub> to get output value y. We are trying to create a function that will accurately map out input data(x) to the output data(y).</p>
+
+		<img src="images/table1.png" style="width:700px;height:200px;">
+
+		<p>We can make random guesses for θ<sub>0</sub> and θ<sub>1.</sub></p>
+
+		<p>If θ<sub>0</sub> = 3 and θ<sub>1.</sub> = 6 then the hypothesis function becomes:</P>
+
+		<p style="font-size:25px; text-align:center;">h<sub>θ</sub>(x) = 3 + 6x </p>
+
+		<p> If our input x = 2 then our output y = 15 which is off by 8.</p>
+
+		<h2>The Cost Function:</h2>
+		<p>To measure the accuracy of the hypothesis function we use a cost function. It takes an average of all the results of the hypothesis with inputs from x and compares it to the actual output y.</p>
+
+		<p style="font-size:25px; text-align:center;">J(θ<sub>0</sub>, θ<sub>1</sub>) = $\frac{1}{2m} \sum_{i=1}^m$ (h<sub>θ</sub>(x<sup>i</sup>) - y<sup>i</sup>)$^2$ </p>
+
+		<p> The above function is called the "Squared Error Function."</p>
+		<p> m is the size of out training data.</p>
+		<p>h<sub>θ</sub>(x<sup>i</sup>) is our guess.</p>
+		<p> y<sup>i</sup> is the acutal label. </p>
+
+		<h2>Gradient Descent</h2>
+
+		<p>Now that we have out hypothesis function and a way to measure how accurate it is, we need a way to automatically improve our hypothesis function. This is the Gradient Descent Equation:</p>
+
+		<p style="font-size:25px; text-align:center;">θ<sub>j</sub> := θ<sub>j</sub> - α $\frac{∂}{∂θ_j}$ J(θ<sub>0</sub>,θ<sub>1</sub>)</p>
+		<p>for j = 0 and j = 1</p>
+		<p>This can be thought of as: Repeat until convergence:</p>
+		<p style="font-size:25px; text-align:center;">θ<sub>j</sub> := θ<sub>j</sub> - α [Slope of line Tangent]</p>
+		<p>α is called the "learning rate" which controls how big of a step we take with gradient descent.</p>
+
+		<p>Now we can substitute the cost function into the gradient descent equation to get:</p>
+
+		<p style="font-size:25px; text-align:center;">θ<sub>0</sub> := θ<sub>0</sub> - α $\frac{1}{m} \sum_{i=1}^m$ (h<sub>θ</sub>(x<sup>i</sup>) - y<sup>i</sup>) </p>
+
+		<p style="font-size:25px; text-align:center;">θ<sub>1</sub> := θ<sub>1</sub> - α $\frac{1}{m} \sum_{i=1}^m$ (h<sub>θ</sub>(x<sup>i</sup>) - y<sup>i</sup>) </p>
+
+		<p>which we reapeat until convergence.</p>
+
+		<p>Remember our hypothesis function:<p>
+
+		<p style="font-size:25px; text-align:center;"> h<sub>θ</sub>(x) = θ<sub>0</sub> + θ<sub>1</sub>x </p>
+
+		<p>is a linear function of x. So we can choose values for our parameters θ<sub>0</sub> and θ<sub>1</sub> to find a line that best fits our data. In other words, choose θ<sub>0</sub> and θ<sub>1</sub> such that h<sub>θ</sub>(x) is close as possible to the actual label y. </p>
+
+		<p>The goal is to find values for our parameters θ<sub>0</sub> and θ<sub>1</sub> so that our cost function is minimized.
+
+		<p style="font-size:25px; text-align:center;"> Minimize θ<sub>0</sub>, θ<sub>1</sub> <br>  J(θ<sub>0</sub>, θ<sub>1</sub>) = $\frac{1}{2m} \sum_{i=1}^m$ (h<sub>θ</sub>(x<sup>i</sup>) - y<sup>i</sup>)$^2$ </p>
+
+
+
+
+</body>
+</html>
+

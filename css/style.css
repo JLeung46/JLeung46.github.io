@@ -199,6 +199,29 @@
   			fill: darkorange;
 		}
 
+		sub { 
+    		vertical-align: sub;
+    		font-size: smaller;
+		}
+
+		sup { 
+    		vertical-align: super;
+    		font-size: smaller;
+		}
+		
+		a:link { 
+			color:#000000;
+			font-size: 19px; 
+			display:block;
+			text-align:center;
+		}
+
+		a:visited {
+			color:#000000;
+
+		}
+
+
 
 
 
