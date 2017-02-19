@@ -76,7 +76,7 @@
 
 		<p style="font-size:25px; text-align:center;"> h<sub>θ</sub>(x) = θ<sub>0</sub> + θ<sub>1</sub>x </p>
 
-		<p>We plug in values for θ<sub>0</sub> and θ<sub>1</sub> to get output value y. We are trying to create a function that will accurately map out input data(x) to the output data(y).</p>
+		<p>We plug in values for θ<sub>0</sub> and θ<sub>1</sub> to get output value y. We are trying to create a function that will accurately map our input data(x) to the output data(y).</p>
 
 		<img src="images/table1.png" width="700" height="200">
 
@@ -94,13 +94,13 @@
 		<p style="font-size:25px; text-align:center;">J(θ<sub>0</sub>, θ<sub>1</sub>) = $\frac{1}{2m} \sum_{i=1}^m$ (h<sub>θ</sub>(x<sup>i</sup>) - y<sup>i</sup>)$^2$ </p>
 
 		<p> The above function is called the "Squared Error Function."</p>
-		<p> m is the size of out training data.</p>
+		<p> m is the size of our training data.</p>
 		<p>h<sub>θ</sub>(x<sup>i</sup>) is our guess.</p>
 		<p> y<sup>i</sup> is the acutal label. </p>
 
 		<h2>Gradient Descent</h2>
 
-		<p>Now that we have out hypothesis function and a way to measure how accurate it is, we need a way to automatically improve our hypothesis function. This is the Gradient Descent Equation:</p>
+		<p>Now that we have our hypothesis function and a way to measure how accurate it is, we need a way to automatically improve our hypothesis function. This is the Gradient Descent Equation:</p>
 
 		<p style="font-size:25px; text-align:center;">θ<sub>j</sub> := θ<sub>j</sub> - α $\frac{∂}{∂θ_j}$ J(θ<sub>0</sub>,θ<sub>1</sub>)</p>
 		<p>for j = 0 and j = 1</p>
