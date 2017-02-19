@@ -1,7 +1,7 @@
 (function(){
 
-var margin = {top: 40, right: 40, bottom: 70, left: 90},
-    width = 480 - margin.left - margin.right,
+var margin = {top: 40, right: 65, bottom: 100, left: 90},
+    width = 500 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 

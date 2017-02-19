@@ -5,7 +5,7 @@ var labelArea = 160;
 var chart,
         width = 280,
         bar_height = 20,
-        height = bar_height * 20;
+        height = bar_height * 30;
         
 var rightOffset = width + labelArea - 20;
 
@@ -21,7 +21,7 @@ function render(data) {
             .append('svg')
             .attr('class', 'chart')
             .attr('width', labelArea + width + width)
-            .attr('height', height);
+            .attr('height', height+10);
 
     xFrom.domain(d3.extent(data, function (d) {
         return d.count;

@@ -1,6 +1,6 @@
 (function(){
 
-var margin = {top: 20, right: 30, bottom: 40, left: 30},
+var margin = {top: 20, right: 30, bottom: 40, left: 95},
     width = 760 - margin.left - margin.right,
     height = 350 - margin.top - margin.bottom;
 
