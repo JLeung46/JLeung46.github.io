@@ -106,15 +106,15 @@
 		<p>for j = 0 and j = 1</p>
 		<p>This can be thought of as: Repeat until convergence:</p>
 		<p style="font-size:25px; text-align:center;">θ<sub>j</sub> := θ<sub>j</sub> - α [Slope of line Tangent]</p>
-		<p>α is called the "learning rate" which controls how big of a step we take with gradient descent.</p>
+		<p>α is called the "learning rate" which controls how big of a step we take with gradient descent. I'll explain more about the learning rate down below.</p>
 
-		<p>Now we can substitute the cost function into the gradient descent equation to get:</p>
+		<p>Now we can substitute the cost function from earlier into the gradient descent equation to get:</p>
 
 		<p style="font-size:25px; text-align:center;">θ<sub>0</sub> := θ<sub>0</sub> - α $\frac{1}{m} \sum_{i=1}^m$ (h<sub>θ</sub>(x<sup>i</sup>) - y<sup>i</sup>) </p>
 
 		<p style="font-size:25px; text-align:center;">θ<sub>1</sub> := θ<sub>1</sub> - α $\frac{1}{m} \sum_{i=1}^m$ (h<sub>θ</sub>(x<sup>i</sup>) - y<sup>i</sup>) </p>
 
-		<p>which we reapeat until convergence.</p>
+		<p>We continuously update these parameters until we reach convergence.</p>
 
 		<p>Remember our hypothesis function:<p>
 
